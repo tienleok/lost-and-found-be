@@ -1,0 +1,18 @@
+scalar Date
+
+scalar DateTime
+
+scalar EmailAddress
+
+scalar PhoneNumber
+
+enum Gender {
+    MALE
+    FEMALE
+}
+
+enum LNFStatus {
+    REPORTED
+    AVAILABLE
+    CLAIMED
+}

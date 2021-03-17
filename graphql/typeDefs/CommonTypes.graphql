@@ -1,0 +1,40 @@
+type Name {
+    displayName: String!
+    firstName: String
+    lastName: String
+}
+
+type Address {
+    line1: String!
+    line2: String
+    country: String!
+    postalcode: String
+    label: String
+}
+
+type Device {
+    deviceid: String
+}
+
+type Image {
+    content: String
+    keyword: [String]
+}
+
+type Location {
+    gps: String
+    keyword: [String]
+}
+
+type Comment {
+    user: User
+    timestamp: DateTime
+    text: String
+}
+
+type Vote {
+    user: User
+    timestamp: DateTime
+    score: Int
+}
+

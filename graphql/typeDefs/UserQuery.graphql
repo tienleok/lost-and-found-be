@@ -1,0 +1,28 @@
+type User {
+    id: ID
+    username: String
+    password: String
+
+    name: Name
+    birthdate: Date
+    gender: Gender
+
+    contactno: [PhoneNumber]
+    email: [EmailAddress]
+    address: [Address]
+    device: [Device]
+
+    lostitem: [LostItem]
+    founditem: [FoundItem]
+
+    status: String
+    rank: String
+    signupdate: Date
+}
+
+type Query {
+    user(id: ID!): User
+    users: [User]
+}
+
+

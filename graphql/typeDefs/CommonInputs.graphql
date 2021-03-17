@@ -1,0 +1,40 @@
+input NameInput {
+    displayName: String!
+    firstName: String
+    lastName: String
+}
+
+input AddressInput {
+    line1: String!
+    line2: String
+    country: String!
+    postalcode: String
+    label: String
+}
+
+input DeviceInput {
+    deviceid: String
+}
+
+input ImageInput {
+    content: String
+    keyword: [String]
+}
+
+input LocationInput {
+    gps: String
+    keyword: [String]
+}
+
+input CommentInput {
+    user: UserInput
+    timestamp: DateTime
+    text: String
+}
+
+input VoteInput {
+    user: UserInput
+    timestamp: DateTime
+    score: Int
+}
+

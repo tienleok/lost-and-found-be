@@ -1,0 +1,24 @@
+type LostItem {
+    id: ID!
+    title: String!
+
+    description: String
+    category: [String]
+    status: LNFStatus
+
+    timestamp: DateTime
+    location: Location
+    image: [Image]
+    keyword: [String]
+
+    comment: [Comment]
+    vote: [Vote]
+
+    reportedBy: User
+    matchedTo: FoundItem
+}
+
+type Query {
+    lostItem(id: ID!): LostItem
+    lostItems: [LostItem]
+}

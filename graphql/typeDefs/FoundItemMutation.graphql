@@ -1,0 +1,26 @@
+input FoundItemInput {
+    title: String
+
+    description: String
+    category: [String]
+    dropoff: LocationInput
+    status: LNFStatus
+
+    timestamp: DateTime
+    location: LocationInput
+    image: [ImageInput]
+    keyword: [String]
+
+    comment: [CommentInput]
+    vote: [VoteInput]
+
+    reportedBy: UserInput
+    claimedBy: UserInput
+    matchedTo: LostItemInput
+}
+
+type Mutation {
+    createFoundItem(foundItemInput: FoundItemInput): FoundItem
+    updateFoundItem(id: ID!, foundItemInput: FoundItemInput): FoundItem
+    deleteFoundItem(id: ID!, foundItemInput: FoundItemInput): FoundItem
+}

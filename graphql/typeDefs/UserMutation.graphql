@@ -1,0 +1,27 @@
+input UserInput {
+    username: String
+    password: String
+
+    name: NameInput
+    birthdate: Date
+    gender: Gender
+
+    contactno: [PhoneNumber]
+    email: [EmailAddress]
+    address: [AddressInput]
+    device: [DeviceInput]
+
+    lostitem: [LostItemInput]
+    founditem: [FoundItemInput]
+
+    status: String
+    rank: String
+    signupdate: DateTime
+}
+
+type Mutation {
+    createUser(userInput: UserInput): User
+    updateUser(id: ID!, userInput: UserInput): User
+    deleteUser(id: ID!, userInput: UserInput): User
+}
+
