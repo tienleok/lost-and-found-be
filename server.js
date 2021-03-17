@@ -7,8 +7,6 @@ var mongoose = require('mongoose');
 var { makeExecutableSchema } = require('@graphql-tools/schema');
 var typeDefs = require('./graphql/typeDefs/');
 var resolvers = require('./graphql/resolvers/');
-//console.log(resolvers);
-console.clear();
 
 var schema = makeExecutableSchema({
   typeDefs, 
