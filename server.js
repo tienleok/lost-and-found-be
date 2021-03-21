@@ -15,7 +15,7 @@ var schema = makeExecutableSchema({
 
 var app = express(); 
 var PORT = 4000;
-const MONGODB_URI = "mongodb://localhost:27017/my_local_db";   
+const MONGODB_URI = "mongodb+srv://dbuser:P%40ssw0rd@cluster1.ebiee.mongodb.net/db01?retryWrites=true&w=majority";   
 
 // app.use(cors());
 
