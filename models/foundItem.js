@@ -1,40 +1,39 @@
-const { getDescription } = require('graphql');
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require('mongoose')
 
-const itemFoundSchema = new Schema({ 
+const itemFoundSchema = new Schema({
   title: String,
 
   description: String,
   category: [String],
   status: String,
-  dropofflocation:  {
+  dropofflocation: {
     gps: String,
     keyword: [String]
   },
 
   timestamp: Date,
-  location:  {
-      gps: String,
-      keyword: [String]
+  location: {
+    gps: String,
+    keyword: [String]
   },
   image: [String],
   keyword: [String],
 
   comment: [{
-      // user: User,
-      timestamp: Date,
-      text: String,
+    // user: User,
+    timestamp: Date,
+    text: String
   }],
   vote: [{
-      // user: User,
-      timestamp: Date,
-      score: Number,
-  }],
+    // user: User,
+    timestamp: Date,
+    score: Number
+  }]
 
   // reportedBy: User,
   // claimedBy: User,
   // matchedTo: FoundItem,
 
-});
+})
 
-module.exports = model('ItemFound', itemFoundSchema); 
+module.exports = model('ItemFound', itemFoundSchema)

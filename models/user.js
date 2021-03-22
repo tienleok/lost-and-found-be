@@ -1,5 +1,4 @@
-const { getDescription } = require('graphql');
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require('mongoose')
 
 const userSchema = new Schema({
   username: String,
@@ -20,7 +19,7 @@ const userSchema = new Schema({
     line2: String,
     country: String,
     postalcode: String,
-    label: String,
+    label: String
   }],
   device: [String],
 
@@ -29,7 +28,7 @@ const userSchema = new Schema({
 
   status: String,
   rank: String,
-  signupdate: Date,
-});
+  signupdate: Date
+})
 
-module.exports = model('User', userSchema); 
+module.exports = model('User', userSchema)
