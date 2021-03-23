@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose')
 
 const userSchema = new Schema({
+  _id: Schema.Types.ObjectId,
   username: String,
   password: String,
 
@@ -12,19 +13,19 @@ const userSchema = new Schema({
   birthdate: Date,
   gender: String,
 
-  contactno: [String],
-  email: [String],
-  address: [{
+  contactnos: [String],
+  emails: [String],
+  addresses: [{
     line1: String,
     line2: String,
     country: String,
     postalcode: String,
     label: String
   }],
-  device: [String],
+  devices: [String],
 
-  // lostitem: [LostItem],
-  // founditem: [FoundItem],
+  lostitems: [{ type: Schema.Types.ObjectId, ref: 'LostItem' }],
+  founditems: [{ type: Schema.Types.ObjectId, ref: 'FoundItem' }],
 
   status: String,
   rank: String,

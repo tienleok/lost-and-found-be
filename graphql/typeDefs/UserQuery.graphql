@@ -7,13 +7,13 @@ type User {
     birthdate: Date
     gender: Gender
 
-    contactno: [PhoneNumber]
-    email: [EmailAddress]
-    address: [Address]
-    device: [Device]
+    contactnos: [PhoneNumber]
+    emails: [EmailAddress]
+    addresses: [Address]
+    devices: [Device]
 
-    lostitem: [LostItem]
-    founditem: [FoundItem]
+    lostitems: [LostItem]
+    founditems: [FoundItem]
 
     status: String
     rank: String

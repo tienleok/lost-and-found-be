@@ -1,11 +1,21 @@
 const LostItem = require('../../models/lostItem')
 
 function lostItems () {
-  return LostItem.find({})
+  return LostItem
+    .find({})
+    .populate('comments.user')
+    .populate('votes.user')
+    .populate('reportedBy')
+    .populate('matchedTo')
 }
 
 function lostItem (args) {
-  return LostItem.findById(args.id)
+  return LostItem
+    .findById(args.id)
+    .populate('comments.user')
+    .populate('votes.user')
+    .populate('reportedBy')
+    .populate('matchedTo')
 }
 
 function createLostItem (args) {

@@ -1,11 +1,23 @@
 const FoundItem = require('../../models/foundItem')
 
 function foundItems () {
-  return FoundItem.find({})
+  return FoundItem
+    .find({})
+    .populate('comments.user')
+    .populate('votes.user')
+    .populate('reportedBy')
+    .populate('claimedBy')
+    .populate('matchedTo')
 }
 
 function foundItem (args) {
-  return FoundItem.findById(args.id)
+  return FoundItem
+    .findById(args.id)
+    .populate('comments.user')
+    .populate('votes.user')
+    .populate('reportedBy')
+    .populate('claimedBy')
+    .populate('matchedTo')
 }
 
 function createFoundItem (args) {

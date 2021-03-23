@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose')
 
 const itemFoundSchema = new Schema({
+  _id: Schema.Types.ObjectId,
   title: String,
 
   description: String,
@@ -19,20 +20,20 @@ const itemFoundSchema = new Schema({
   image: [String],
   keyword: [String],
 
-  comment: [{
-    // user: User,
+  comments: [{
+    user: { type: Schema.Types.ObjectId, ref: 'User' },
     timestamp: Date,
     text: String
   }],
-  vote: [{
-    // user: User,
+  votes: [{
+    user: { type: Schema.Types.ObjectId, ref: 'User' },
     timestamp: Date,
     score: Number
-  }]
+  }],
 
-  // reportedBy: User,
-  // claimedBy: User,
-  // matchedTo: FoundItem,
+  reportedBy: { type: Schema.Types.ObjectId, ref: 'User' },
+  claimedBy: { type: Schema.Types.ObjectId, ref: 'User' },
+  matchedTo: { type: Schema.Types.ObjectId, ref: 'LostItem' }
 
 })
 

@@ -6,13 +6,13 @@ input UserInput {
     birthdate: Date
     gender: Gender
 
-    contactno: [PhoneNumber]
-    email: [EmailAddress]
-    address: [AddressInput]
-    device: [DeviceInput]
+    contactnos: [PhoneNumber]
+    emails: [EmailAddress]
+    addresses: [AddressInput]
+    devices: [DeviceInput]
 
-    lostitem: [LostItemInput]
-    founditem: [FoundItemInput]
+    lostitems: [LostItemInput]
+    founditems: [FoundItemInput]
 
     status: String
     rank: String
@@ -22,6 +22,6 @@ input UserInput {
 type Mutation {
     createUser(userInput: UserInput): User
     updateUser(id: ID!, userInput: UserInput): User
-    deleteUser(id: ID!, userInput: UserInput): User
+    deleteUser(id: ID!): User
 }
 

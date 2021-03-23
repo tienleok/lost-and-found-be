@@ -11,8 +11,8 @@ type LostItem {
     image: [Image]
     keyword: [String]
 
-    comment: [Comment]
-    vote: [Vote]
+    comments: [Comment]
+    votes: [Vote]
 
     reportedBy: User
     matchedTo: FoundItem

@@ -1,11 +1,17 @@
 const User = require('../../models/user')
 
 function users () {
-  return User.find({})
+  return User
+    .find({})
+    .populate('founditems')
+    .populate('lostitems')
 }
 
 function user (args) {
-  return User.findById(args.id)
+  return User
+    .findById(args.id)
+    .populate('founditems')
+    .populate('lostitems')
 }
 
 function createUser (args) {

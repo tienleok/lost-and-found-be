@@ -11,8 +11,8 @@ input FoundItemInput {
     image: [ImageInput]
     keyword: [String]
 
-    comment: [CommentInput]
-    vote: [VoteInput]
+    comments: [CommentInput]
+    votes: [VoteInput]
 
     reportedBy: UserInput
     claimedBy: UserInput
@@ -22,5 +22,5 @@ input FoundItemInput {
 type Mutation {
     createFoundItem(foundItemInput: FoundItemInput): FoundItem
     updateFoundItem(id: ID!, foundItemInput: FoundItemInput): FoundItem
-    deleteFoundItem(id: ID!, foundItemInput: FoundItemInput): FoundItem
+    deleteFoundItem(id: ID!): FoundItem
 }
