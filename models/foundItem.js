@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const itemFoundSchema = new Schema({
+const foundItemSchema = new Schema({
   _id: Schema.Types.ObjectId,
   title: String,
 
@@ -37,4 +37,4 @@ const itemFoundSchema = new Schema({
 
 })
 
-module.exports = model('ItemFound', itemFoundSchema)
+module.exports = model('FoundItem', foundItemSchema)
