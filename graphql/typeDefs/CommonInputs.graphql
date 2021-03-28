@@ -1,13 +1,13 @@
 input NameInput {
-    displayName: String!
+    displayName: String
     firstName: String
     lastName: String
 }
 
 input AddressInput {
-    line1: String!
+    line1: String
     line2: String
-    country: String!
+    country: String
     postalcode: String
     label: String
 }

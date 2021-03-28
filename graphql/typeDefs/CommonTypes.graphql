@@ -1,13 +1,13 @@
 type Name {
-    displayName: String!
+    displayName: String
     firstName: String
     lastName: String
 }
 
 type Address {
-    line1: String!
+    line1: String
     line2: String
-    country: String!
+    country: String
     postalcode: String
     label: String
 }

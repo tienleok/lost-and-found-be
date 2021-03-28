@@ -1,7 +1,6 @@
 const { Schema, model } = require('mongoose')
 
 const foundItemSchema = new Schema({
-  _id: Schema.Types.ObjectId,
   title: String,
 
   description: String,
