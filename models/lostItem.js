@@ -12,8 +12,8 @@ const lostItemSchema = new Schema({
     gps: String,
     keyword: [String]
   },
-  image: [String],
-  keyword: [String],
+  images: [String],
+  keywords: [String],
 
   comments: [{
     user: { type: Schema.Types.ObjectId, ref: 'User' },

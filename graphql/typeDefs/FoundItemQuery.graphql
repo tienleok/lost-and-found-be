@@ -9,8 +9,8 @@ type FoundItem {
 
     timestamp: DateTime
     location: Location
-    image: [Image]
-    keyword: [String]
+    images: [Image]
+    keywords: [String]
 
     comments: [Comment]
     votes: [Vote]
