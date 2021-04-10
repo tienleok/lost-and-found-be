@@ -1,5 +1,4 @@
 const { useSofa, OpenAPI } = require('sofa-api')
-const bodyParser = require('body-parser')
 const express = require('express')
 const { graphqlHTTP } = require('express-graphql')
 const mongoose = require('mongoose')
@@ -21,7 +20,7 @@ const MONGODB_URI = 'mongodb+srv://dbuser:P%40ssw0rd@cluster1.ebiee.mongodb.net/
 
 app.use(cors())
 
-app.use(bodyParser.json())
+app.use(express.urlencoded({ extended: true }))
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true })
 mongoose.connection.once('open', function () {
