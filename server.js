@@ -15,11 +15,12 @@ const schema = makeExecutableSchema({
 })
 
 const app = express()
-const PORT = 4000
+const PORT = 8082
 const MONGODB_URI = 'mongodb+srv://dbuser:P%40ssw0rd@cluster1.ebiee.mongodb.net/db01?retryWrites=true&w=majority'
 
 app.use(cors())
 
+app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true })
