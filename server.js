@@ -2,6 +2,7 @@ const { useSofa, OpenAPI } = require('sofa-api')
 const express = require('express')
 const { graphqlHTTP } = require('express-graphql')
 const mongoose = require('mongoose')
+const swaggerUi = require('swagger-ui-express')
 
 const cors = require('cors')
 
@@ -59,7 +60,15 @@ app.use(
 )
 
 // writes every recorder route
-openApi.save('./swagger.yml')
+openApi.save('./swagger.json')
+
+const swaggerDocument = require('./swagger.json')
+
+app.use(
+  '/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument)
+)
 
 app.listen(PORT, function () {
   console.log(`Server listening on port ${PORT}.`)

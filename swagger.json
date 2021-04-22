@@ -1,0 +1,1136 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Lost-and-Found API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/found-item/{id}": {
+      "get": {
+        "operationId": "foundItemQuery",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FoundItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/found-items": {
+      "get": {
+        "operationId": "foundItemsQuery",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FoundItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/lost-item/{id}": {
+      "get": {
+        "operationId": "lostItemQuery",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LostItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/lost-items": {
+      "get": {
+        "operationId": "lostItemsQuery",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LostItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/{id}": {
+      "get": {
+        "operationId": "userQuery",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users": {
+      "get": {
+        "operationId": "usersQuery",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/create-found-item": {
+      "post": {
+        "operationId": "createFoundItemMutation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "foundItemInput": {
+                    "$ref": "#/components/schemas/FoundItemInput"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FoundItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/update-found-item": {
+      "post": {
+        "operationId": "updateFoundItemMutation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "foundItemInput": {
+                    "$ref": "#/components/schemas/FoundItemInput"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FoundItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/delete-found-item": {
+      "post": {
+        "operationId": "deleteFoundItemMutation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FoundItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/create-lost-item": {
+      "post": {
+        "operationId": "createLostItemMutation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "lostItemInput": {
+                    "$ref": "#/components/schemas/LostItemInput"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LostItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/update-lost-item": {
+      "post": {
+        "operationId": "updateLostItemMutation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "lostItemInput": {
+                    "$ref": "#/components/schemas/LostItemInput"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LostItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/delete-lost-item": {
+      "post": {
+        "operationId": "deleteLostItemMutation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LostItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/create-user": {
+      "post": {
+        "operationId": "createUserMutation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userInput": {
+                    "$ref": "#/components/schemas/UserInput"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/update-user": {
+      "post": {
+        "operationId": "updateUserMutation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "userInput": {
+                    "$ref": "#/components/schemas/UserInput"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/delete-user": {
+      "post": {
+        "operationId": "deleteUserMutation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "NameInput": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          }
+        }
+      },
+      "AddressInput": {
+        "type": "object",
+        "properties": {
+          "line1": {
+            "type": "string"
+          },
+          "line2": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "postalcode": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        }
+      },
+      "DeviceInput": {
+        "type": "object",
+        "properties": {
+          "deviceid": {
+            "type": "string"
+          }
+        }
+      },
+      "ImageInput": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "keyword": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "LocationInput": {
+        "type": "object",
+        "properties": {
+          "gps": {
+            "type": "string"
+          },
+          "keyword": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CommentInput": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "object"
+          },
+          "timestamp": {
+            "type": "object"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "VoteInput": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "object"
+          },
+          "timestamp": {
+            "type": "object"
+          },
+          "score": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Name": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          }
+        }
+      },
+      "Address": {
+        "type": "object",
+        "properties": {
+          "line1": {
+            "type": "string"
+          },
+          "line2": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "postalcode": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        }
+      },
+      "Device": {
+        "type": "object",
+        "properties": {
+          "deviceid": {
+            "type": "string"
+          }
+        }
+      },
+      "Image": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "keyword": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "gps": {
+            "type": "string"
+          },
+          "keyword": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Comment": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "timestamp": {
+            "type": "object"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "Vote": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "timestamp": {
+            "type": "object"
+          },
+          "score": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "FoundItemInput": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "category": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dropoff": {
+            "type": "object"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "REPORTED",
+              "AVAILABLE",
+              "CLAIMED"
+            ]
+          },
+          "timestamp": {
+            "type": "object"
+          },
+          "location": {
+            "type": "object"
+          },
+          "image": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "keyword": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "votes": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "reportedBy": {
+            "type": "object"
+          },
+          "claimedBy": {
+            "type": "object"
+          },
+          "matchedTo": {
+            "type": "object"
+          }
+        }
+      },
+      "Mutation": {
+        "type": "object",
+        "properties": {
+          "createFoundItem": {
+            "$ref": "#/components/schemas/FoundItem"
+          },
+          "updateFoundItem": {
+            "$ref": "#/components/schemas/FoundItem"
+          },
+          "deleteFoundItem": {
+            "$ref": "#/components/schemas/FoundItem"
+          },
+          "createLostItem": {
+            "$ref": "#/components/schemas/LostItem"
+          },
+          "updateLostItem": {
+            "$ref": "#/components/schemas/LostItem"
+          },
+          "deleteLostItem": {
+            "$ref": "#/components/schemas/LostItem"
+          },
+          "createUser": {
+            "$ref": "#/components/schemas/User"
+          },
+          "updateUser": {
+            "$ref": "#/components/schemas/User"
+          },
+          "deleteUser": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "FoundItem": {
+        "type": "object",
+        "required": [
+          "id",
+          "title"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "category": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dropoff": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "REPORTED",
+              "AVAILABLE",
+              "CLAIMED"
+            ]
+          },
+          "timestamp": {
+            "type": "object"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Image"
+            }
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Comment"
+            }
+          },
+          "votes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vote"
+            }
+          },
+          "reportedBy": {
+            "$ref": "#/components/schemas/User"
+          },
+          "claimedBy": {
+            "$ref": "#/components/schemas/User"
+          },
+          "matchedTo": {
+            "$ref": "#/components/schemas/LostItem"
+          }
+        }
+      },
+      "Query": {
+        "type": "object",
+        "properties": {
+          "foundItem": {
+            "$ref": "#/components/schemas/FoundItem"
+          },
+          "foundItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FoundItem"
+            }
+          },
+          "lostItem": {
+            "$ref": "#/components/schemas/LostItem"
+          },
+          "lostItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LostItem"
+            }
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        }
+      },
+      "LostItemInput": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "category": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "REPORTED",
+              "AVAILABLE",
+              "CLAIMED"
+            ]
+          },
+          "timestamp": {
+            "type": "object"
+          },
+          "location": {
+            "type": "object"
+          },
+          "image": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "keyword": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "votes": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "reportedBy": {
+            "type": "object"
+          },
+          "matchedTo": {
+            "type": "object"
+          }
+        }
+      },
+      "LostItem": {
+        "type": "object",
+        "required": [
+          "id",
+          "title"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "category": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "REPORTED",
+              "AVAILABLE",
+              "CLAIMED"
+            ]
+          },
+          "timestamp": {
+            "type": "object"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Image"
+            }
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Comment"
+            }
+          },
+          "votes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vote"
+            }
+          },
+          "reportedBy": {
+            "$ref": "#/components/schemas/User"
+          },
+          "matchedTo": {
+            "$ref": "#/components/schemas/FoundItem"
+          }
+        }
+      },
+      "UserInput": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "name": {
+            "type": "object"
+          },
+          "birthdate": {
+            "type": "object"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "MALE",
+              "FEMALE"
+            ]
+          },
+          "contactnos": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "emails": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "devices": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "lostitems": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "founditems": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "status": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "string"
+          },
+          "signupdate": {
+            "type": "object"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "name": {
+            "$ref": "#/components/schemas/Name"
+          },
+          "birthdate": {
+            "type": "object"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "MALE",
+              "FEMALE"
+            ]
+          },
+          "contactnos": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "emails": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Address"
+            }
+          },
+          "devices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Device"
+            }
+          },
+          "lostitems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LostItem"
+            }
+          },
+          "founditems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FoundItem"
+            }
+          },
+          "status": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "string"
+          },
+          "signupdate": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

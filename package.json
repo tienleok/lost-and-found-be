@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "debug": "nodemon --inspect",
-    "start": "nodemon ",
+    "debug": "nodemon --ignore swagger.json --inspect",
+    "start": "nodemon --ignore swagger.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -19,7 +19,8 @@
     "graphql-scalars": "^1.9.0",
     "graphql-tools": "^7.0.4",
     "mongoose": "^5.12.3",
-    "sofa-api": "^0.10.2"
+    "sofa-api": "^0.10.2",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "eslint": "^7.23.0",
