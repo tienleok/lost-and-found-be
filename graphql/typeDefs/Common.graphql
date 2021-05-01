@@ -1,0 +1,129 @@
+scalar ObjectID
+
+scalar Date
+scalar DateTime
+scalar LocalDate
+
+scalar EmailAddress
+
+scalar PhoneNumber
+
+scalar Latitude
+scalar Longitude
+
+scalar Void
+
+enum Gender {
+    MALE
+    FEMALE
+}
+
+enum LNFStatus {
+    REPORTED
+    AVAILABLE
+    CLAIMED
+}
+
+type Name {
+    displayName: String
+    firstName: String
+    lastName: String
+}
+
+input NameInput {
+    displayName: String
+    firstName: String
+    lastName: String
+}
+
+type Phone {
+    data: PhoneNumber
+    label: String
+}
+
+input PhoneInput {
+    data: PhoneNumber
+    label: String
+}
+
+type Email {
+    data: EmailAddress
+    label: String
+}
+
+input EmailInput {
+    data: EmailAddress
+    label: String
+}
+
+type Address {
+    line1: String
+    line2: String
+    country: String
+    postalcode: String
+    label: String
+}
+
+input AddressInput {
+    line1: String
+    line2: String
+    country: String
+    postalcode: String
+    label: String
+}
+
+type Device {
+    deviceid: String
+}
+
+input DeviceInput {
+    deviceid: String
+}
+
+type Image {
+    name: String
+    type: String
+    data: String
+    keywords: [String]
+}
+
+input ImageInput {
+    name: String
+    type: String
+    data: String
+    keywords: [String]
+}
+
+type Location {
+    gps: String
+    keyword: [String]
+}
+
+input LocationInput {
+    gps: String
+    keyword: [String]
+}
+
+type Comment {
+    user: User
+    timestamp: DateTime
+    text: String
+}
+
+input CommentInput {
+    user: UserInput
+    timestamp: DateTime
+    text: String
+}
+
+type Vote {
+    user: User
+    timestamp: DateTime
+    score: Int
+}
+
+input VoteInput {
+    user: UserInput
+    timestamp: DateTime
+    score: Int
+}

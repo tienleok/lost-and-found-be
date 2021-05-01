@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose')
+// const { Image } = require('./common')
 
 const foundItemSchema = new Schema({
   title: String,
@@ -14,9 +15,14 @@ const foundItemSchema = new Schema({
   timestamp: Date,
   location: {
     gps: String,
-    keyword: [String]
+    keywords: [String]
   },
-  images: [String],
+  images: [{
+    name: String,
+    type: { type: String },
+    data: Buffer,
+    keywords: [String]
+  }],
   keywords: [String],
 
   comments: [{
@@ -32,8 +38,8 @@ const foundItemSchema = new Schema({
 
   reportedBy: { type: Schema.Types.ObjectId, ref: 'User' },
   claimedBy: { type: Schema.Types.ObjectId, ref: 'User' },
-  matchedTo: { type: Schema.Types.ObjectId, ref: 'LostItem' }
-
+  matchedTo: { type: Schema.Types.ObjectId, ref: 'LostItem' },
+  possibleMatches: [{ type: Schema.Types.ObjectId, ref: 'LostItem' }]
 })
 
 module.exports = model('FoundItem', foundItemSchema)

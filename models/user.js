@@ -1,26 +1,42 @@
 const { Schema, model } = require('mongoose')
 
+const nameSchema = new Schema({
+  displayName: String,
+  firstName: String,
+  lastName: String
+})
+
+const phoneSchema = new Schema({
+  data: String,
+  label: String
+})
+
+const emailSchema = new Schema({
+  data: String,
+  label: String
+})
+
+const addressSchema = new Schema({
+  line1: String,
+  line2: String,
+  country: String,
+  postalcode: String,
+  label: String
+})
+
 const userSchema = new Schema({
   username: String,
   password: String,
+  token: Buffer,
+  roles: [String],
 
-  name: {
-    displayName: String,
-    firstName: String,
-    lastName: String
-  },
+  name: nameSchema,
   birthdate: Date,
   gender: String,
 
-  contactnos: [String],
-  emails: [String],
-  addresses: [{
-    line1: String,
-    line2: String,
-    country: String,
-    postalcode: String,
-    label: String
-  }],
+  contactnos: [phoneSchema],
+  emails: [emailSchema],
+  addresses: [addressSchema],
   devices: [String],
 
   lostitems: [{ type: Schema.Types.ObjectId, ref: 'LostItem' }],
@@ -28,7 +44,7 @@ const userSchema = new Schema({
 
   status: String,
   rank: String,
-  signupdate: Date
+  signupdate: { type: Date, default: Date.now }
 })
 
 module.exports = model('User', userSchema)

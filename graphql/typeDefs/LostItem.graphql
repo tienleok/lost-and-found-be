@@ -1,3 +1,24 @@
+type LostItem {
+    id: ID!
+    title: String!
+
+    description: String
+    category: [String]
+    status: LNFStatus
+
+    timestamp: DateTime
+    location: Location
+    images: [Image]
+    keywords: [String]
+
+    comments: [Comment]
+    votes: [Vote]
+
+    reportedBy: User
+    matchedTo: FoundItem
+    possibleMatches: [FoundItem]
+}
+
 input LostItemInput {
     title: String
 
@@ -7,7 +28,7 @@ input LostItemInput {
 
     timestamp: DateTime
     location: LocationInput
-    image: [ImageInput]
+    images: [ImageInput]
     keyword: [String]
 
     comments: [CommentInput]
@@ -17,8 +38,14 @@ input LostItemInput {
     matchedTo: FoundItemInput
 }
 
+type Query {
+    lostItem(id: ID!): LostItem
+    lostItems: [LostItem]
+}
+
 type Mutation {
     createLostItem(lostItemInput: LostItemInput): LostItem
     updateLostItem(id: ID!, lostItemInput: LostItemInput): LostItem
     deleteLostItem(id: ID!): LostItem
+    clearLostItemsPossibleMatches: Void
 }

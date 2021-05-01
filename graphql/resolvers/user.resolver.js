@@ -27,15 +27,25 @@ function updateUser (args) {
   return User.findByIdAndUpdate(args.id, args.userInput, { new: true })
 }
 
+async function login (args) {
+  const user = await User.find({ username: args.username })
+  if (user) {
+    user.token = Buffer.from(args.username).toString('base64')
+    return user
+  }
+}
+
 module.exports = {
   Query: {
     users: () => users(),
-    user: (_, args) => user(args)
+    user: (_, args) => user(args),
+    me: (_, args) => user(args)
   },
   Mutation: {
     createUser: (_, args) => createUser(args),
     updateUser: (_, args) => updateUser(args),
-    deleteUser: (_, args) => deleteUser(args)
+    deleteUser: (_, args) => deleteUser(args),
+    login: (_, args) => login(args)
   }
 }
 

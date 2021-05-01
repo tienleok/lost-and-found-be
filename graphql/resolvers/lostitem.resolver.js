@@ -7,6 +7,7 @@ function lostItems () {
     .populate('votes.user')
     .populate('reportedBy')
     .populate('matchedTo')
+    .populate('possibleMatches')
 }
 
 function lostItem (args) {
@@ -16,6 +17,7 @@ function lostItem (args) {
     .populate('votes.user')
     .populate('reportedBy')
     .populate('matchedTo')
+    .populate('possibleMatches')
 }
 
 function createLostItem (args) {
@@ -31,6 +33,10 @@ function updateLostItem (args) {
   return LostItem.findByIdAndUpdate(args.id, args.lostItemInput, { new: true })
 }
 
+function clearLostItemsPossibleMatches () {
+  LostItem.updateMany({}, { $unset: { possibleMatches: 1 } })
+}
+
 module.exports = {
   Query: {
     lostItems: () => lostItems(),
@@ -39,7 +45,7 @@ module.exports = {
   Mutation: {
     createLostItem: (_, args) => createLostItem(args),
     updateLostItem: (_, args) => updateLostItem(args),
-    deleteLostItem: (_, args) => deleteLostItem(args)
+    deleteLostItem: (_, args) => deleteLostItem(args),
+    clearLostItemsPossibleMatches: () => clearLostItemsPossibleMatches()
   }
 }
-// module.exports = { lostItems, lostItem, createLostItem, deleteLostItem, updateLostItem }

@@ -1,4 +1,22 @@
 const FoundItem = require('../../models/foundItem')
+const LostItem = require('../../models/lostItem')
+
+async function matchFoundItems (lostItem) {
+  return FoundItem.find({ $text: { $search: lostItem.title } }, { _id: 1 })
+}
+
+async function matchLostItems (foundItem) {
+  const possibleMatches = await LostItem.find({ $text: { $search: foundItem.title } })
+  possibleMatches.map(lostItem => {
+    lostItem.possibleMatches.push(foundItem._id)
+    foundItem.possibleMatches.push(lostItem._id)
+    lostItem.save()
+    foundItem.save()
+    return lostItem
+  })
+}
+
+/// /////////////////////////////////
 
 function foundItems () {
   return FoundItem
@@ -8,6 +26,7 @@ function foundItems () {
     .populate('reportedBy')
     .populate('claimedBy')
     .populate('matchedTo')
+    .populate('possibleMatches')
 }
 
 function foundItem (args) {
@@ -18,19 +37,28 @@ function foundItem (args) {
     .populate('reportedBy')
     .populate('claimedBy')
     .populate('matchedTo')
+    .populate('possibleMatches')
 }
 
 function createFoundItem (args) {
   const foundItem = new FoundItem(args.foundItemInput)
-  return foundItem.save()
+  foundItem.save()
+  matchLostItems(foundItem)
+  return foundItem
 }
 
 function deleteFoundItem (args) {
   return FoundItem.findByIdAndRemove(args.id)
 }
 
-function updateFoundItem (args) {
-  return FoundItem.findByIdAndUpdate(args.id, args.foundItemInput, { new: true })
+async function updateFoundItem (args) {
+  const foundItem = await FoundItem.findByIdAndUpdate(args.id, args.foundItemInput, { new: true })
+  await matchLostItems(foundItem)
+  return foundItem
+}
+
+function clearFoundItemsPossibleMatches () {
+  FoundItem.updateMany({}, { $unset: { possibleMatches: 1 } })
 }
 
 module.exports = {
@@ -41,7 +69,7 @@ module.exports = {
   Mutation: {
     createFoundItem: (_, args) => createFoundItem(args),
     updateFoundItem: (_, args) => updateFoundItem(args),
-    deleteFoundItem: (_, args) => deleteFoundItem(args)
+    deleteFoundItem: (_, args) => deleteFoundItem(args),
+    clearFoundItemsPossibleMatches: () => clearFoundItemsPossibleMatches()
   }
 }
-// module.exports = { foundItems, foundItem, createFoundItem, deleteFoundItem, updateFoundItem }
