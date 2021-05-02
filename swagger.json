@@ -277,7 +277,14 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {}
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
               }
             }
           }
@@ -288,7 +295,41 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/FoundItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/validate-found-items": {
+      "post": {
+        "operationId": "validateFoundItemsMutation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FoundItem"
                 }
               }
             }
@@ -406,7 +447,14 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {}
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
               }
             }
           }
@@ -417,7 +465,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/LostItem"
                 }
               }
             }
@@ -1013,7 +1061,10 @@
             "$ref": "#/components/schemas/FoundItem"
           },
           "clearFoundItemsPossibleMatches": {
-            "type": "object"
+            "$ref": "#/components/schemas/FoundItem"
+          },
+          "validateFoundItems": {
+            "$ref": "#/components/schemas/FoundItem"
           },
           "createLostItem": {
             "$ref": "#/components/schemas/LostItem"
@@ -1025,7 +1076,7 @@
             "$ref": "#/components/schemas/LostItem"
           },
           "clearLostItemsPossibleMatches": {
-            "type": "object"
+            "$ref": "#/components/schemas/LostItem"
           },
           "createUser": {
             "$ref": "#/components/schemas/User"

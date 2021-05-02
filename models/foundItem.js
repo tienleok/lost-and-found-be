@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose')
 // const { Image } = require('./common')
 
 const foundItemSchema = new Schema({
-  title: String,
+  title: { type: String, required: true },
 
   description: String,
   category: [String],

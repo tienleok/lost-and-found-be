@@ -6,12 +6,11 @@ async function matchFoundItems (lostItem) {
 }
 
 async function matchLostItems (foundItem) {
-  const possibleMatches = await LostItem.find({ $text: { $search: foundItem.title } })
-  possibleMatches.map(lostItem => {
-    lostItem.possibleMatches.push(foundItem._id)
+  const possibleMatches1 = await LostItem.find({ $text: { $search: foundItem.title } })
+  possibleMatches1.map(lostItem => {
     foundItem.possibleMatches.push(lostItem._id)
+    lostItem.possibleMatches.push(foundItem._id)
     lostItem.save()
-    foundItem.save()
     return lostItem
   })
 }
@@ -40,11 +39,14 @@ function foundItem (args) {
     .populate('possibleMatches')
 }
 
-function createFoundItem (args) {
-  const foundItem = new FoundItem(args.foundItemInput)
-  foundItem.save()
-  matchLostItems(foundItem)
-  return foundItem
+async function createFoundItem (args) {
+  try {
+    const foundItem = new FoundItem(args.foundItemInput)
+    await matchLostItems(foundItem)
+    return foundItem.save()
+  } catch (err) {
+    console.log(err.message)
+  }
 }
 
 function deleteFoundItem (args) {
@@ -57,7 +59,7 @@ async function updateFoundItem (args) {
   return foundItem
 }
 
-function clearFoundItemsPossibleMatches () {
+function clearFoundItemsPossibleMatches (args) {
   FoundItem.updateMany({}, { $unset: { possibleMatches: 1 } })
 }
 
@@ -70,6 +72,6 @@ module.exports = {
     createFoundItem: (_, args) => createFoundItem(args),
     updateFoundItem: (_, args) => updateFoundItem(args),
     deleteFoundItem: (_, args) => deleteFoundItem(args),
-    clearFoundItemsPossibleMatches: () => clearFoundItemsPossibleMatches()
+    clearFoundItemsPossibleMatches: (_, args) => clearFoundItemsPossibleMatches(args)
   }
 }

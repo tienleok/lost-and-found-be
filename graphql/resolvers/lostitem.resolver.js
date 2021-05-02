@@ -1,5 +1,17 @@
+const FoundItem = require('../../models/foundItem')
 const LostItem = require('../../models/lostItem')
 
+async function matchFoundItems (lostItem) {
+  const possibleMatches2 = await FoundItem.find({ $text: { $search: lostItem.title } })
+  possibleMatches2.map(foundItem => {
+    lostItem.possibleMatches.push(foundItem._id)
+    foundItem.possibleMatches.push(lostItem._id)
+    foundItem.save()
+    return foundItem
+  })
+}
+
+/// /////////////////////////////////
 function lostItems () {
   return LostItem
     .find({})
@@ -20,9 +32,16 @@ function lostItem (args) {
     .populate('possibleMatches')
 }
 
-function createLostItem (args) {
-  const lostItem = new LostItem(args.lostItemInput)
-  return lostItem.save()
+async function createLostItem (args) {
+  // const lostItem = new LostItem(args.lostItemInput)
+  // return lostItem.save()
+  try {
+    const lostItem = new LostItem(args.lostItemInput)
+    await matchFoundItems(lostItem)
+    return lostItem.save()
+  } catch (err) {
+    console.log(err.message)
+  }
 }
 
 function deleteLostItem (args) {
@@ -46,6 +65,6 @@ module.exports = {
     createLostItem: (_, args) => createLostItem(args),
     updateLostItem: (_, args) => updateLostItem(args),
     deleteLostItem: (_, args) => deleteLostItem(args),
-    clearLostItemsPossibleMatches: () => clearLostItemsPossibleMatches()
+    clearLostItemsPossibleMatches: (_, args) => clearLostItemsPossibleMatches(args)
   }
 }

@@ -51,5 +51,6 @@ type Mutation {
     createFoundItem(foundItemInput: FoundItemInput): FoundItem
     updateFoundItem(id: ID!, foundItemInput: FoundItemInput): FoundItem
     deleteFoundItem(id: ID!): FoundItem
-    clearFoundItemsPossibleMatches: Void
+    clearFoundItemsPossibleMatches(id: ID!): FoundItem
+    validateFoundItems(id: ID!): FoundItem
 }
