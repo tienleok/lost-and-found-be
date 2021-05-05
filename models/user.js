@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose')
+const autopopulate = require('mongoose-autopopulate')
 
 const nameSchema = new Schema({
   displayName: String,
@@ -39,12 +40,21 @@ const userSchema = new Schema({
   addresses: [addressSchema],
   devices: [String],
 
-  lostitems: [{ type: Schema.Types.ObjectId, ref: 'LostItem' }],
-  founditems: [{ type: Schema.Types.ObjectId, ref: 'FoundItem' }],
-
   status: String,
   rank: String,
   signupdate: { type: Date, default: Date.now }
+}, {
+  strict: true,
+  strictQuery: true, // Turn on strict mode for query filters
+  timestamps: true
+})
+userSchema.plugin(autopopulate)
+
+userSchema.virtual('lostitems').get(function () {
+  return model('LostItem').find({ reportedBy: this._id })
+})
+userSchema.virtual('founditems').get(function () {
+  return model('FoundItem').find({ reportedBy: this._id })
 })
 
 module.exports = model('User', userSchema)

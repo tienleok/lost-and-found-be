@@ -269,74 +269,6 @@
         }
       }
     },
-    "/api/clear-found-items-possible-matches": {
-      "post": {
-        "operationId": "clearFoundItemsPossibleMatchesMutation",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "id"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FoundItem"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/validate-found-items": {
-      "post": {
-        "operationId": "validateFoundItemsMutation",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "id"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FoundItem"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/create-lost-item": {
       "post": {
         "operationId": "createLostItemMutation",
@@ -408,40 +340,6 @@
     "/api/delete-lost-item": {
       "post": {
         "operationId": "deleteLostItemMutation",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "id"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LostItem"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/clear-lost-items-possible-matches": {
-      "post": {
-        "operationId": "clearLostItemsPossibleMatchesMutation",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1060,12 +958,6 @@
           "deleteFoundItem": {
             "$ref": "#/components/schemas/FoundItem"
           },
-          "clearFoundItemsPossibleMatches": {
-            "$ref": "#/components/schemas/FoundItem"
-          },
-          "validateFoundItems": {
-            "$ref": "#/components/schemas/FoundItem"
-          },
           "createLostItem": {
             "$ref": "#/components/schemas/LostItem"
           },
@@ -1073,9 +965,6 @@
             "$ref": "#/components/schemas/LostItem"
           },
           "deleteLostItem": {
-            "$ref": "#/components/schemas/LostItem"
-          },
-          "clearLostItemsPossibleMatches": {
             "$ref": "#/components/schemas/LostItem"
           },
           "createUser": {

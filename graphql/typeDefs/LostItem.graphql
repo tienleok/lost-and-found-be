@@ -47,5 +47,4 @@ type Mutation {
     createLostItem(lostItemInput: LostItemInput): LostItem
     updateLostItem(id: ID!, lostItemInput: LostItemInput): LostItem
     deleteLostItem(id: ID!): LostItem
-    clearLostItemsPossibleMatches(id: ID!): LostItem
 }
