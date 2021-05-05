@@ -1,17 +1,11 @@
 const User = require('../../models/user')
 
 function users () {
-  return User
-    .find({})
-    .populate('founditems')
-    .populate('lostitems')
+  return User.find({})
 }
 
 function user (args) {
-  return User
-    .findById(args.id)
-    .populate('founditems')
-    .populate('lostitems')
+  return User.findById(args.id)
 }
 
 function createUser (args) {
@@ -30,7 +24,8 @@ function updateUser (args) {
 module.exports = {
   Query: {
     users: () => users(),
-    user: (_, args) => user(args)
+    user: (_, args) => user(args),
+    me: (_, args) => user(args)
   },
   Mutation: {
     createUser: (_, args) => createUser(args),
@@ -38,5 +33,3 @@ module.exports = {
     deleteUser: (_, args) => deleteUser(args)
   }
 }
-
-// module.exports = { users, user, createUser, deleteUser, updateUser }

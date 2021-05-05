@@ -1,26 +1,16 @@
 const LostItem = require('../../models/lostItem')
 
 function lostItems () {
-  return LostItem
-    .find({})
-    .populate('comments.user')
-    .populate('votes.user')
-    .populate('reportedBy')
-    .populate('matchedTo')
+  return LostItem.find({})
 }
 
 function lostItem (args) {
-  return LostItem
-    .findById(args.id)
-    .populate('comments.user')
-    .populate('votes.user')
-    .populate('reportedBy')
-    .populate('matchedTo')
+  return LostItem.findById(args.id)
 }
 
 function createLostItem (args) {
-  const lostItem = new LostItem(args.lostItemInput)
-  return lostItem.save()
+  const item = new LostItem(args.lostItemInput)
+  return item.save()
 }
 
 function deleteLostItem (args) {
@@ -42,4 +32,3 @@ module.exports = {
     deleteLostItem: (_, args) => deleteLostItem(args)
   }
 }
-// module.exports = { lostItems, lostItem, createLostItem, deleteLostItem, updateLostItem }

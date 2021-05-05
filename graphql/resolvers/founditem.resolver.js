@@ -1,28 +1,16 @@
 const FoundItem = require('../../models/foundItem')
 
 function foundItems () {
-  return FoundItem
-    .find({})
-    .populate('comments.user')
-    .populate('votes.user')
-    .populate('reportedBy')
-    .populate('claimedBy')
-    .populate('matchedTo')
+  return FoundItem.find({})
 }
 
 function foundItem (args) {
-  return FoundItem
-    .findById(args.id)
-    .populate('comments.user')
-    .populate('votes.user')
-    .populate('reportedBy')
-    .populate('claimedBy')
-    .populate('matchedTo')
+  return FoundItem.findById(args.id)
 }
 
 function createFoundItem (args) {
-  const foundItem = new FoundItem(args.foundItemInput)
-  return foundItem.save()
+  const item = new FoundItem(args.foundItemInput)
+  return item.save()
 }
 
 function deleteFoundItem (args) {
@@ -44,4 +32,3 @@ module.exports = {
     deleteFoundItem: (_, args) => deleteFoundItem(args)
   }
 }
-// module.exports = { foundItems, foundItem, createFoundItem, deleteFoundItem, updateFoundItem }
