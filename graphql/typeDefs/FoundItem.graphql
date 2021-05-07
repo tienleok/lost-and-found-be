@@ -1,3 +1,58 @@
+enum LNFStatus {
+    REPORTED
+    AVAILABLE
+    CLAIMED
+}
+
+
+type Image {
+    name: String
+    type: String
+    data: String
+    keywords: [String]
+}
+
+input ImageInput {
+    name: String
+    type: String
+    data: String
+    keywords: [String]
+}
+
+type Location {
+    gps: String
+    keyword: [String]
+}
+
+input LocationInput {
+    gps: String
+    keyword: [String]
+}
+
+type Comment {
+    user: User
+    timestamp: DateTime
+    text: String
+}
+
+input CommentInput {
+    user: UserInput
+    timestamp: DateTime
+    text: String
+}
+
+type Vote {
+    user: User
+    timestamp: DateTime
+    score: Int
+}
+
+input VoteInput {
+    user: UserInput
+    timestamp: DateTime
+    score: Int
+}
+
 type FoundItem {
     id: ID!
     title: String!
