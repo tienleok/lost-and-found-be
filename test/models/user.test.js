@@ -14,8 +14,8 @@ describe('User Model Test', () => {
   })
 
   afterAll(async () => {
-    await mongoose.connection.close();
-  });
+    await mongoose.connection.close()
+  })
 
   it('create & save user successfully', async () => {
     const userData = {
@@ -29,8 +29,8 @@ describe('User Model Test', () => {
       },
       birthdate: '1980-01-01',
       gender: 'Male',
-      contactnos: [{ data: 99552888, label: 'Mobile'}],
-      emails: [{ data:'test@mail.com', label:'Personal'}],
+      contactnos: [{ data: '99552888', label: 'Mobile' }],
+      emails: [{ data: 'test@mail.com', label: 'Personal' }],
       status: 'Newbie',
       rank: 'Rookie',
       signupdate: '2021-05-05'
@@ -42,29 +42,33 @@ describe('User Model Test', () => {
     expect(savedUser._id).toBeDefined()
     expect(savedUser.username).toBe(userData.username)
     expect(savedUser.password).toBe(userData.password)
-    // expect(savedUser.roles).toBe(userData.roles)
-    expect(savedUser.name._id).toBeDefined()
-    expect(savedUser.name.displayName).toBe(userData.name.displayName)
-    expect(savedUser.name.firstName).toBe(userData.name.firstName)
-    //expect(savedUser.name.lastName).toBe(userData.lastName)    
-    //expect(savedUser.name).toContain(userData.name)
-    // expect(savedUser.birthdate).toBe(userData.birthdate)
-    // expect(savedUser.gender).toBe(userData.gender)
-    // expect(savedUser.contactnos).toBe(userData.contactnos)
-    // expect(savedUser.emails).toBe(userData.emails)
-    // expect(savedUser.status).toBe(userData.status)
-    // expect(savedUser.rank).toBe(userData.rank)
-    // expect(savedUser.signupdate).toBe(userData.signupdate)
+    expect(savedUser.roles).toEqual(expect.arrayContaining(userData.roles))
+    expect(savedUser.name).toMatchObject(userData.name)
+    expect(new Date(savedUser.birthdate)).toEqual(new Date(userData.birthdate))
+    expect(savedUser.gender).toBe(userData.gender)
+    expect(savedUser.contactnos).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ data: '99552888', label: 'Mobile' })
+      ])
+    )
+    expect(savedUser.emails).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ data: 'test@mail.com', label: 'Personal' })
+      ])
+    )
+    expect(savedUser.status).toBe(userData.status)
+    expect(savedUser.rank).toBe(userData.rank)
+    expect(new Date(savedUser.signupdate)).toEqual(new Date(userData.signupdate))
   })
 
   // Test Schema is working!!!
   // You shouldn't be able to add in any field that isn't defined in the schema
   it('insert user successfully, but the field(s) not defined in schema should be undefined', async () => {
-    const userWithInvalidField = new User({ 
-      username: 'max', 
-      name: {      displayname: 'Max Nicholson',      firstname: 'Max',      lastname: 'Nicholson'    }, 
-      gender: 'Male', 
-      nickname: 'Handsome Max' 
+    const userWithInvalidField = new User({
+      username: 'max',
+      name: { displayname: 'Max Nicholson', firstname: 'Max', lastname: 'Nicholson' },
+      gender: 'Male',
+      nickname: 'Handsome Max'
     })
     const savedUserWithInvalidField = await userWithInvalidField.save()
     expect(savedUserWithInvalidField._id).toBeDefined()
@@ -74,11 +78,12 @@ describe('User Model Test', () => {
   // Test Validation is working!!!
   // It should us told us the errors in on gender field.
   it('create user without required field should fail', async () => {
-    const userWithoutRequiredField = new User({ name:  {      displayname: 'Failed User',      firstname: 'Failed',      lastname: 'User'    } })
+    const userWithoutRequiredField = new User({ name: { displayname: 'Failed User', firstname: 'Failed', lastname: 'User' } })
     let err
     try {
-      const savedUserWithoutRequiredField = await userWithoutRequiredField.save()
-      error = savedUserWithoutRequiredField
+      // const savedUserWithoutRequiredField = await userWithoutRequiredField.save()
+      // error = savedUserWithoutRequiredField
+      await userWithoutRequiredField.save()
     } catch (error) {
       err = error
     }
