@@ -1,6 +1,6 @@
 # Lost and Found (Backend)
 
-One Paragraph of project description goes here.
+This is the backend for the Lost-and-Found project.
 
 ## Getting Started
 
