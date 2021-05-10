@@ -12,7 +12,7 @@ What things you need to install the software and how to install them
 
 ```
 * [NVM](https://github.com/coreybutler/nvm-windows/releases/latest) - Node Version Manager
-* Node.js v14.16.0 or higher
+* Node.js v16 or higher
 * NPM v6.14.11 - installed together with Node.js
 * [Visual Studio Code](https://code.visualstudio.com/)
 
