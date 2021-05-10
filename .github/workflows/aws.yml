@@ -26,9 +26,8 @@
 name: Deploy to Amazon ECS
 
 on:
-  release:
-    types: [created]
-
+  push
+  
 env:
   AWS_REGION: ap-southeast-1                     # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: lost-and-found-be              # set this to your Amazon ECR repository name
