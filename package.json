@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "debug": "nodemon --ignore swagger.json --inspect",
-    "start": "nodemon --ignore swagger.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
