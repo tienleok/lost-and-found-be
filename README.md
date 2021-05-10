@@ -32,6 +32,7 @@ Install [Visual Studio Code](https://code.visualstudio.com/)
 In VSCode, search for the following Extensions and install them
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Jest](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest)
+- [GraphQL](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql)
 
 ```
 
