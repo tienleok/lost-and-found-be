@@ -34,16 +34,6 @@ In VSCode, search for the following Extensions and install them
 - [Jest](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest)
 - [GraphQL](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql)
 
-```
-
-```
-
-And repeat
-
-```
-until finished
-```
-
 End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
