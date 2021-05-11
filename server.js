@@ -20,7 +20,7 @@ const app = express()
 const PORT = 8082
 const MONGODB_URI = 'mongodb+srv://dbuser:P%40ssw0rd@cluster1.ebiee.mongodb.net/db01?retryWrites=true&w=majority'
 
-app.use(helmet())
+app.use(helmet({ contentSecurityPolicy: (process.env.NODE_ENV === 'production') ? undefined : false }))
 app.use(cors())
 
 app.use(express.json({ limit: '50mb' }))
