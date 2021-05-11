@@ -1,3 +1,64 @@
+enum Gender {
+    MALE
+    FEMALE
+}
+
+type Name {
+    displayName: String
+    firstName: String
+    lastName: String
+}
+
+input NameInput {
+    displayName: String
+    firstName: String
+    lastName: String
+}
+
+type Phone {
+    data: PhoneNumber
+    label: String
+}
+
+input PhoneInput {
+    data: PhoneNumber
+    label: String
+}
+
+type Email {
+    data: EmailAddress
+    label: String
+}
+
+input EmailInput {
+    data: EmailAddress
+    label: String
+}
+
+type Address {
+    line1: String
+    line2: String
+    country: String
+    postalcode: String
+    label: String
+}
+
+input AddressInput {
+    line1: String
+    line2: String
+    country: String
+    postalcode: String
+    label: String
+}
+
+type Device {
+    deviceid: String
+}
+
+input DeviceInput {
+    deviceid: String
+}
+
 type User {
     id: ID
     username: String
@@ -35,9 +96,6 @@ input UserInput {
     emails: [EmailInput]
     addresses: [AddressInput]
     devices: [DeviceInput]
-
-    lostitems: [LostItemInput]
-    founditems: [FoundItemInput]
 
     status: String
     rank: String

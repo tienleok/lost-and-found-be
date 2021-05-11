@@ -26,7 +26,7 @@ const addressSchema = new Schema({
 })
 
 const userSchema = new Schema({
-  username: String,
+  username: { type: String, required: true },
   password: String,
   token: Buffer,
   roles: [String],
