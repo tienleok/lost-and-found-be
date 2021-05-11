@@ -1,5 +1,6 @@
 const { useSofa, OpenAPI } = require('sofa-api')
 const express = require('express')
+const helmet = require('helmet')
 const { graphqlHTTP } = require('express-graphql')
 const mongoose = require('mongoose')
 const swaggerUi = require('swagger-ui-express')
@@ -17,8 +18,9 @@ const schema = makeExecutableSchema({
 
 const app = express()
 const PORT = 8082
-const MONGODB_URI = ''
+const MONGODB_URI = 'mongodb+srv://dbuser:P%40ssw0rd@cluster1.ebiee.mongodb.net/db01?retryWrites=true&w=majority'
 
+app.use(helmet())
 app.use(cors())
 
 app.use(express.json({ limit: '50mb' }))
