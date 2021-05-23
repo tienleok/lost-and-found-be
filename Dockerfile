@@ -1,5 +1,5 @@
 # Choose the Image which has Node installed already
-FROM node:16-alpine
+FROM node:16
 
 # COPY all the files from Current Directory into the Container-test after successfull build
 COPY ./ ./
