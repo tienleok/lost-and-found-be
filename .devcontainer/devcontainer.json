@@ -1,6 +1,12 @@
 {
 	"name": "lost-and-found-be",
 
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick a Node version: 10, 12, 14
+		"args": { "VARIANT": "16" }
+	},
+		
 	// Set *default* container specific settings.json values on container create.
 	"settings": {},
 	
@@ -22,5 +28,5 @@
 	// "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
 
 	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
-	// "remoteUser": "vscode"    
+	"remoteUser": "node"    
 }
