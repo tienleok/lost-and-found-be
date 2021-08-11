@@ -5,13 +5,13 @@ ARG VARIANT="16-alpine"
 FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-${VARIANT}
 
 # COPY all the files from Current Directory into the Container-test after successfull build
-# COPY ./ ./
+COPY ./ ./
 
 # Install the Project Dependencies like Express Framework
-# RUN npm install
+RUN npm install
 
 # Tell that this image is going to Open a Port 
-# EXPOSE 8082
+EXPOSE 8082
 
 # Default Command to launch the Application
 # CMD ["npm", "start"]
