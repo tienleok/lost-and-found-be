@@ -1,7 +1,5 @@
-# See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.185.0/containers/javascript-node/.devcontainer/base.Dockerfile
-
-# [Choice] Node.js version: 14, 12, 10
-FROM node:latest
+# Choose the Image which has Node installed already
+FROM node:16-alpine
 
 # COPY all the files from Current Directory into the Container-test after successfull build
 COPY ./ ./
