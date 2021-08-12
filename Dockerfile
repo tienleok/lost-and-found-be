@@ -14,4 +14,4 @@ RUN npm install
 EXPOSE 8082
 
 # Default Command to launch the Application
-# CMD ["npm", "start"]
+CMD ["npm", "start"]
