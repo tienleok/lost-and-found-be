@@ -1,5 +1,3 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.191.0/containers/docker-existing-dockerfile
 {
 	"name": "lost-and-found-be",
 
@@ -7,18 +5,16 @@
 	"context": "..",
 
 	// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
-	"dockerFile": "../Dockerfile",
+	"dockerFile": "Dockerfile",
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": {},
 	
 	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [
-		"dbaeumer.vscode-eslint"
-	],
+    "extensions": ["dbaeumer.vscode-eslint"],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [8082],
+    "forwardPorts": [8082]
 
 	// Uncomment the next line to run commands after the container is created - for example installing curl.
 	// "postCreateCommand": "apt-get update && apt-get install -y curl",
@@ -30,5 +26,5 @@
 	// "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
 
 	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
-	// "remoteUser": "vscode"
+	// "remoteUser": "vscode"    
 }
