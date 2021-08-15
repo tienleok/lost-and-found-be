@@ -1,23 +1,33 @@
 {
 	"name": "lost-and-found-be",
 
-	// Sets the run context to one level up instead of the .devcontainer folder.
-	"context": "..",
-
-	// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
-	"dockerFile": "Dockerfile",
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick a Node version: 12, 14, 16
+		"args": { "VARIANT": "16" }
+	},
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": {},
 	
 	// Add the IDs of extensions you want installed when the container is created.
-    "extensions": ["dbaeumer.vscode-eslint"],
+	"extensions": [
+		"dbaeumer.vscode-eslint"
+	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-    "forwardPorts": [8082]
+	// "forwardPorts": [8082]
 
+	// Use 'portsAttributes' to set default properties for specific forwarded ports. More info: https://code.visualstudio.com/docs/remote/devcontainerjson-reference.
+	"portsAttributes": {
+		"8082": {
+			"label": "GraphQL",
+			"onAutoForward": "notify"
+		}
+	},
+		
 	// Uncomment the next line to run commands after the container is created - for example installing curl.
-	// "postCreateCommand": "apt-get update && apt-get install -y curl",
+	"postCreateCommand": "npm install",
 
 	// Uncomment when using a ptrace-based debugger like C++, Go, and Rust
 	// "runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
@@ -26,5 +36,5 @@
 	// "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
 
 	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
-	// "remoteUser": "vscode"    
+	"remoteUser": "node"    
 }
