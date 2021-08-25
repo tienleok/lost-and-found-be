@@ -1,0 +1,7 @@
+project:
+  name: lost-and-found-be
+  regions:
+  - ap-southeast-1
+tests:
+  default:
+    template: ./templates/my-template.yaml
