@@ -1,5 +1,6 @@
 # Choose the Image which has Node installed already
-FROM node:16
+ARG VARIANT="16"
+FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-${VARIANT}
 
 # COPY all the files from Current Directory into the Container-test after successfull build
 COPY ./ ./
