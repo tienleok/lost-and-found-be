@@ -4,6 +4,8 @@ const helmet = require('helmet')
 const { graphqlHTTP } = require('express-graphql')
 const mongoose = require('mongoose')
 const swaggerUi = require('swagger-ui-express')
+const { SecretsManagerClient, GetSecretValueCommand  } = require("@aws-sdk/client-secrets-manager");
+
 
 const cors = require('cors')
 
@@ -18,7 +20,10 @@ const schema = makeExecutableSchema({
 
 const app = express()
 const PORT = 8082
-const MONGODB_URI = 'mongodb+srv://dbuser:P%40ssw0rd@cluster1.ebiee.mongodb.net/db01?retryWrites=true&w=majority'
+const client = new SecretsManagerClient({region: "ap-southeast-1"});
+const command = new GetSecretValueCommand({SecretId: "MONGODB_URI"});
+const response = await client.send(command);
+const MONGODB_URI = response.SecretString;
 
 app.use(helmet({ contentSecurityPolicy: (process.env.NODE_ENV === 'production') ? undefined : false }))
 app.use(cors())
