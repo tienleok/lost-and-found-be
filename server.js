@@ -6,7 +6,6 @@ const mongoose = require('mongoose')
 const swaggerUi = require('swagger-ui-express')
 const { SecretsManagerClient, GetSecretValueCommand  } = require("@aws-sdk/client-secrets-manager");
 
-
 const cors = require('cors')
 
 const { makeExecutableSchema } = require('@graphql-tools/schema')
@@ -20,10 +19,6 @@ const schema = makeExecutableSchema({
 
 const app = express()
 const PORT = 8082
-const client = new SecretsManagerClient({region: "ap-southeast-1"});
-const command = new GetSecretValueCommand({SecretId: "MONGODB_URI"});
-const response = await client.send(command);
-const MONGODB_URI = response.SecretString;
 
 app.use(helmet({ contentSecurityPolicy: (process.env.NODE_ENV === 'production') ? undefined : false }))
 app.use(cors())
@@ -31,7 +26,13 @@ app.use(cors())
 app.use(express.json({ limit: '50mb' }))
 app.use(express.urlencoded({ limit: '50mb', parameterLimit: 10000000, extended: true }))
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true })
+const client = new SecretsManagerClient({region: "ap-southeast-1"});
+const command = new GetSecretValueCommand({SecretId: "MONGODB_URI"});
+client.send(command).then(function(data) {
+  const MONGODB_URI = (JSON.parse(data.SecretString)).MONGODB_URI
+  mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true })
+});
+
 mongoose.connection.once('open', function () {
   console.log('Connected to the Database.')
 })
