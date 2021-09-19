@@ -18,7 +18,7 @@ const schema = makeExecutableSchema({
 })
 
 const app = express()
-const PORT = 8082
+const PORT = 80
 
 app.use(helmet({ contentSecurityPolicy: (process.env.NODE_ENV === 'production') ? undefined : false }))
 app.use(cors())
